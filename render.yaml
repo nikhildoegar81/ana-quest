@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ana-quest
+    runtime: python
+    plan: starter
+    buildCommand: ""
+    startCommand: python app.py
+    healthCheckPath: /health
+    envVars:
+      - key: ANAQUEST_SECRET
+        generateValue: true
+      - key: SECURE_COOKIES
+        value: "1"
+      - key: ANAQUEST_DB_PATH
+        value: /opt/render/project/data/habit_tracker.db
+    disks:
+      - name: anaquest-data
+        mountPath: /opt/render/project/data
+        sizeGB: 1
